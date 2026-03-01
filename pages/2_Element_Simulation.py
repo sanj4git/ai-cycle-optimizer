@@ -1,5 +1,6 @@
 import streamlit as st
 import numpy as np
+import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from src.strength_engine import StrengthEngine, CEMENT_FACTORS, CURING_FACTORS
@@ -145,5 +146,3 @@ for t in milestones:
         "Total Cost (₹)": f"₹{cd['total_cost']:,.0f}",
     })
 st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
-
-import pandas as pd

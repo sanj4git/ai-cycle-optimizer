@@ -9,62 +9,64 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# ── Clean professional CSS ──
+# ── Dark professional CSS ──
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
 
-/* Clean white bg with subtle warmth */
-.stApp { background: #f8f9fa; }
-[data-testid="stSidebar"] { background: #ffffff; border-right: 1px solid #e9ecef; }
+/* Dark background */
+.stApp { background: #0e1117; }
+[data-testid="stSidebar"] { background: #1a1d24; border-right: 1px solid #2d333b; }
 
 /* Metric cards */
 [data-testid="stMetric"] {
-    background: #ffffff;
-    border: 1px solid #e9ecef;
+    background: #1a1d24;
+    border: 1px solid #2d333b;
     border-radius: 8px;
     padding: 16px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
-[data-testid="stMetric"] label { color: #6c757d !important; font-size: 0.78rem !important; font-weight: 500 !important; text-transform: uppercase; letter-spacing: 0.5px; }
-[data-testid="stMetric"] [data-testid="stMetricValue"] { color: #212529 !important; font-weight: 700 !important; }
+[data-testid="stMetric"] label { color: #8b949e !important; font-size: 0.78rem !important; font-weight: 500 !important; text-transform: uppercase; letter-spacing: 0.5px; }
+[data-testid="stMetric"] [data-testid="stMetricValue"] { color: #f0f6fc !important; font-weight: 700 !important; }
 
-h1, h2, h3 { color: #212529 !important; font-weight: 700 !important; }
+h1, h2, h3 { color: #f0f6fc !important; font-weight: 700 !important; }
+p, li, span, div, label, .stMarkdown { color: #c9d1d9 !important; }
+[data-testid="stSidebar"] p, [data-testid="stSidebar"] span, [data-testid="stSidebar"] li { color: #c9d1d9 !important; }
 
 /* Section labels */
 .section-label {
-    color: #0d6efd; font-size: 0.72rem; font-weight: 600;
+    color: #58a6ff; font-size: 0.72rem; font-weight: 600;
     text-transform: uppercase; letter-spacing: 1.2px;
     margin-bottom: 12px; padding-bottom: 6px;
-    border-bottom: 2px solid #0d6efd;
+    border-bottom: 2px solid #58a6ff;
     display: inline-block;
 }
 
 .card {
-    background: #ffffff; border: 1px solid #e9ecef; border-radius: 8px;
-    padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    background: #1a1d24; border: 1px solid #2d333b; border-radius: 8px;
+    padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 /* Buttons */
 .stButton > button {
-    background: #0d6efd; color: #fff; border: none;
+    background: #238636; color: #fff; border: none;
     border-radius: 6px; font-weight: 600; padding: 8px 20px;
 }
-.stButton > button:hover { background: #0b5ed7; }
+.stButton > button:hover { background: #2ea043; }
 
-hr { border-color: #e9ecef !important; }
+hr { border-color: #2d333b !important; }
 
 /* Clean dataframe */
-[data-testid="stDataFrame"] { border: 1px solid #e9ecef; border-radius: 8px; overflow: hidden; }
+[data-testid="stDataFrame"] { border: 1px solid #2d333b; border-radius: 8px; overflow: hidden; }
 
 /* Active model badge */
 .model-badge {
     display: inline-block; padding: 4px 12px; border-radius: 20px;
     font-size: 0.75rem; font-weight: 600;
 }
-.model-badge.active { background: #d1e7dd; color: #0f5132; }
-.model-badge.fallback { background: #fff3cd; color: #664d03; }
+.model-badge.active { background: #1a4731; color: #3fb950; }
+.model-badge.fallback { background: #3d2e00; color: #d29922; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -108,26 +110,20 @@ st.markdown('<div class="section-label">What This System Does</div>', unsafe_all
 
 c1, c2, c3 = st.columns(3)
 with c1:
-    st.markdown("""
-    **🧠 Predict Strength**
+    st.markdown("""**🧠 Predict Strength**
 
-    Given mix design, curing method, and climate conditions — predict when concrete
-    reaches the required demoulding strength, with uncertainty bounds.
-    """)
+Given mix design, curing method, and climate conditions — predict when concrete
+reaches the required demoulding strength, with uncertainty bounds.""")
 with c2:
-    st.markdown("""
-    **💰 Estimate Costs**
+    st.markdown("""**💰 Estimate Costs**
 
-    For any demoulding time, compute the total expected cost — yard holding,
-    steam treatment, and risk of rework from premature demoulding.
-    """)
+For any demoulding time, compute the total expected cost — yard holding,
+steam treatment, and risk of rework from premature demoulding.""")
 with c3:
-    st.markdown("""
-    **🎯 Recommend Action**
+    st.markdown("""**🎯 Recommend Action**
 
-    Find the optimal demoulding time that minimizes total cost while keeping
-    failure risk below acceptable thresholds. Adapts to region and season.
-    """)
+Find the optimal demoulding time that minimizes total cost while keeping
+failure risk below acceptable thresholds. Adapts to region and season.""")
 
 # ── Dataset Summary (if available) ──
 if df is not None:
