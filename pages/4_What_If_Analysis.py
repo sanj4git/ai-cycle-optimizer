@@ -10,7 +10,7 @@ from src.yard_model import YardModel
 from src.model_loader import load_model
 from src.climate_profiles import CLIMATE_PROFILES, get_city_names
 
-st.set_page_config(page_title="What-If Analysis | AI-Cycle", page_icon="🔬", layout="wide")
+st.set_page_config(page_title="What-If Analysis | AI-Cycle", page_icon="", layout="wide")
 
 # ─────────────────────────────────────────────
 # Header
@@ -19,7 +19,7 @@ st.markdown("""
 <h1 style="background: linear-gradient(90deg, #FFB74D, #FF9800, #F57C00);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text; font-size: 2rem; margin-bottom: 0;">
-    🔬 What-If Analysis
+    What-If Analysis
 </h1>
 <p style="color: #8b949e; font-size: 0.95rem; margin-top: 4px;">
     Explore how changes in temperature, curing, and mold availability impact your optimal strategy
@@ -40,7 +40,7 @@ optimizer = OptimizationEngine(strength_engine, economic_engine)
 # Sidebar: Base Configuration
 # ─────────────────────────────────────────────
 with st.sidebar:
-    st.markdown("### 🔬 Base Configuration")
+    st.markdown("### Base Configuration")
 
     cement_type = st.selectbox("Cement Type", list(CEMENT_FACTORS.keys()))
     wc_ratio = st.slider("W/C Ratio", 0.28, 0.60, 0.40, 0.02)
@@ -60,15 +60,15 @@ with st.sidebar:
 st.markdown("""<div style="color: #FFB74D; font-size: 0.8rem; font-weight: 600;
     text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;
     padding-bottom: 6px; border-bottom: 1px solid rgba(255,183,77,0.2);">
-    🎛️ Scenario Controls
+    Scenario Controls
 </div>""", unsafe_allow_html=True)
 
 ctrl1, ctrl2, ctrl3, ctrl4 = st.columns(4)
 
 with ctrl1:
-    base_temp = st.slider("🌡️ Base Temperature (°C)", 10, 48, 30)
+    base_temp = st.slider("Base Temperature (°C)", 10, 48, 30)
 with ctrl2:
-    what_if_temp = st.slider("🌡️ What-If Temperature (°C)", 10, 48, 38)
+    what_if_temp = st.slider("What-If Temperature (°C)", 10, 48, 38)
 with ctrl3:
     base_curing = st.selectbox("Base Curing", list(CURING_FACTORS.keys()), key="base_curing")
 with ctrl4:
@@ -76,11 +76,11 @@ with ctrl4:
 
 ctrl5, ctrl6, ctrl7, ctrl8 = st.columns(4)
 with ctrl5:
-    base_rh = st.slider("💧 Base RH (%)", 20, 100, 60)
+    base_rh = st.slider("Base RH (%)", 20, 100, 60)
 with ctrl6:
-    what_if_rh = st.slider("💧 What-If RH (%)", 20, 100, 85)
+    what_if_rh = st.slider("What-If RH (%)", 20, 100, 85)
 with ctrl7:
-    what_if_molds = st.slider("🔧 What-If Mold Count", 5, 80, 40)
+    what_if_molds = st.slider("What-If Mold Count", 5, 80, 40)
 with ctrl8:
     steam_cost = st.number_input("Steam Cost (₹/hr)", 0, 2000, 200)
 
@@ -89,7 +89,7 @@ with ctrl8:
 # ─────────────────────────────────────────────
 st.markdown("")
 st.markdown("""<div style="color: #c9d1d9; font-weight: 600; font-size: 0.9rem; margin-bottom: 8px;">
-    🗺️ Quick Regional Presets
+    Quick Regional Presets
 </div>""", unsafe_allow_html=True)
 
 preset_cols = st.columns(len(CLIMATE_PROFILES))
@@ -97,7 +97,7 @@ selected_preset = None
 
 for i, (city, profile) in enumerate(CLIMATE_PROFILES.items()):
     with preset_cols[i]:
-        if st.button(f"{profile['icon']} {city.split(' (')[0]}", key=f"preset_{i}", use_container_width=True):
+        if st.button(f"{city.split(' (')[0]}", key=f"preset_{i}", use_container_width=True):
             selected_preset = city
 
 if selected_preset:
@@ -142,7 +142,7 @@ st.markdown("---")
 st.markdown("""<div style="color: #FFB74D; font-size: 0.8rem; font-weight: 600;
     text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;
     padding-bottom: 6px; border-bottom: 1px solid rgba(255,183,77,0.2);">
-    📊 Scenario Comparison
+    Scenario Comparison
 </div>""", unsafe_allow_html=True)
 
 d1, d2, d3, d4, d5 = st.columns(5)
@@ -251,7 +251,7 @@ st.markdown("---")
 st.markdown("""<div style="color: #FFB74D; font-size: 0.8rem; font-weight: 600;
     text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;
     padding-bottom: 6px; border-bottom: 1px solid rgba(255,183,77,0.2);">
-    📈 Strength Curve Comparison
+    Strength Curve Comparison
 </div>""", unsafe_allow_html=True)
 
 time_hours = np.linspace(1, 168, 100)
@@ -337,7 +337,7 @@ st.markdown("---")
 st.markdown("""<div style="color: #FFB74D; font-size: 0.8rem; font-weight: 600;
     text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;
     padding-bottom: 6px; border-bottom: 1px solid rgba(255,183,77,0.2);">
-    🌪️ Sensitivity Analysis (Tornado Chart)
+    Sensitivity Analysis (Tornado Chart)
 </div>""", unsafe_allow_html=True)
 
 sensitivity = optimizer.sensitivity_analysis(
@@ -379,7 +379,7 @@ st.markdown("---")
 st.markdown("""<div style="color: #FFB74D; font-size: 0.8rem; font-weight: 600;
     text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;
     padding-bottom: 6px; border-bottom: 1px solid rgba(255,183,77,0.2);">
-    🗺️ Cross-Regional Comparison
+    Cross-Regional Comparison
 </div>""", unsafe_allow_html=True)
 
 region_data = []

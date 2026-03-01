@@ -10,7 +10,7 @@ from src.optimization_engine import OptimizationEngine
 from src.model_loader import load_model
 from src.climate_profiles import CLIMATE_PROFILES, get_city_names
 
-st.set_page_config(page_title="Optimization Lab | AI-Cycle", page_icon="🎯", layout="wide")
+st.set_page_config(page_title="Optimization Lab | AI-Cycle", page_icon="", layout="wide")
 
 # ─────────────────────────────────────────────
 # Header
@@ -19,7 +19,7 @@ st.markdown("""
 <h1 style="background: linear-gradient(90deg, #FFB74D, #FF9800, #F57C00);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text; font-size: 2rem; margin-bottom: 0;">
-    🎯 Optimization Dashboard
+    Optimization Dashboard
 </h1>
 <p style="color: #8b949e; font-size: 0.95rem; margin-top: 4px;">
     Multi-objective optimization — find the optimal demould time balancing cost, risk, and throughput
@@ -32,7 +32,7 @@ st.markdown("---")
 # Sidebar
 # ─────────────────────────────────────────────
 with st.sidebar:
-    st.markdown("### 🎯 Optimization Parameters")
+    st.markdown("### Optimization Parameters")
 
     # Mix design
     st.markdown("**Mix Design**")
@@ -99,9 +99,6 @@ st.markdown(f"""
 <div style="background: linear-gradient(135deg, rgba(46,204,113,0.1) 0%, rgba(46,204,113,0.02) 100%);
     border: 1px solid rgba(46,204,113,0.3); border-radius: 14px; padding: 24px 28px; margin-bottom: 20px;">
     <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
-        <div style="flex-shrink: 0;">
-            <div style="font-size: 2.5rem;">🏆</div>
-        </div>
         <div style="flex: 1; min-width: 200px;">
             <div style="color: #2ecc71; font-size: 0.75rem; font-weight: 600;
                 text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px;">
@@ -110,7 +107,7 @@ st.markdown(f"""
             <div style="color: #e6edf3; font-size: 1.5rem; font-weight: 700;">
                 Demould at {best['time_h']}h &nbsp;
                 <span style="color: #2ecc71; font-size: 0.85rem;">
-                    {'✅ Meets Strength' if best['meets_strength'] else '⚠️ Below Target'}
+                    {'Meets Strength' if best['meets_strength'] else 'Below Target'}
                 </span>
             </div>
         </div>
@@ -231,7 +228,7 @@ st.markdown("---")
 st.markdown("""<div style="color: #FFB74D; font-size: 0.8rem; font-weight: 600;
     text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;
     padding-bottom: 6px; border-bottom: 1px solid rgba(255,183,77,0.2);">
-    ⚠️ Failure Risk by Candidate Time
+    Failure Risk by Candidate Time
 </div>""", unsafe_allow_html=True)
 
 risk_cols = st.columns(len(results))
@@ -245,7 +242,7 @@ for i, r in enumerate(results):
         border-radius: 8px; padding: 10px 4px;">
         <div style="color: #8b949e; font-size: 0.7rem; font-weight: 500;">{r['time_h']}h</div>
         <div style="color: {color}; font-size: 1.3rem; font-weight: 700;">{r['risk_pct']:.1f}%</div>
-        <div style="color: #8b949e; font-size: 0.6rem;">{'⭐ Best' if is_best else ''}</div>
+        <div style="color: #8b949e; font-size: 0.6rem;">{'Best' if is_best else ''}</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -256,14 +253,18 @@ st.markdown("---")
 st.markdown("""<div style="color: #FFB74D; font-size: 0.8rem; font-weight: 600;
     text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;
     padding-bottom: 6px; border-bottom: 1px solid rgba(255,183,77,0.2);">
-    📊 Full Results Table
+    Full Results Table
 </div>""", unsafe_allow_html=True)
 
 display_df = pd.DataFrame(results)
+# Select only the columns we need
+display_df = display_df[['time_h', 'mean_strength', 'std_strength', 'risk_pct',
+                          'yard_cost', 'treatment_cost', 'rework_expected',
+                          'total_cost', 'meets_strength']]
 display_df.columns = ['Time (h)', 'Mean Strength (MPa)', 'Std (MPa)', 'Risk (%)',
                        'Yard Cost (₹)', 'Treatment (₹)', 'Rework Expected (₹)',
                        'Total Cost (₹)', 'Meets Strength']
 # Format boolean
-display_df['Meets Strength'] = display_df['Meets Strength'].map({True: '✅', False: '❌'})
+display_df['Meets Strength'] = display_df['Meets Strength'].map({True: 'Yes', False: 'No'})
 
 st.dataframe(display_df, use_container_width=True, hide_index=True)

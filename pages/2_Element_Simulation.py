@@ -7,7 +7,7 @@ from src.economic_engine import EconomicEngine
 from src.model_loader import load_model
 from src.climate_profiles import CLIMATE_PROFILES, get_city_names
 
-st.set_page_config(page_title="Element Simulation | AI-Cycle", page_icon="🧪", layout="wide")
+st.set_page_config(page_title="Element Simulation | AI-Cycle", page_icon="", layout="wide")
 
 # ─────────────────────────────────────────────
 # Header
@@ -16,7 +16,7 @@ st.markdown("""
 <h1 style="background: linear-gradient(90deg, #FFB74D, #FF9800, #F57C00);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text; font-size: 2rem; margin-bottom: 0;">
-    🧪 Element Strength Simulation
+    Element Strength Simulation
 </h1>
 <p style="color: #8b949e; font-size: 0.95rem; margin-top: 4px;">
     Scenario builder — simulate strength gain, risk, and cost over time for any element configuration
@@ -29,7 +29,7 @@ st.markdown("---")
 # Sidebar: Element Configuration
 # ─────────────────────────────────────────────
 with st.sidebar:
-    st.markdown("### 🧪 Element Configuration")
+    st.markdown("### Element Configuration")
 
     # Mix Design
     st.markdown("**Mix Design**")
@@ -56,7 +56,7 @@ with st.sidebar:
         profile = CLIMATE_PROFILES[region]
         ambient_temp = profile["monsoon_temp_c"] if monsoon else profile["ambient_temp_c"]
         ambient_rh = profile["monsoon_rh_pct"] if monsoon else profile["ambient_rh_pct"]
-        st.markdown(f"🌡️ **{ambient_temp}°C** &nbsp; 💧 **{ambient_rh}%** RH")
+        st.markdown(f"**{ambient_temp}°C** &nbsp; **{ambient_rh}%** RH")
     else:
         ambient_temp = st.slider("Ambient Temperature (°C)", 10, 48, 30)
         ambient_rh = st.slider("Relative Humidity (%)", 20, 100, 65)
@@ -276,7 +276,7 @@ st.markdown("---")
 st.markdown("""<div style="color: #FFB74D; font-size: 0.8rem; font-weight: 600;
     text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;
     padding-bottom: 6px; border-bottom: 1px solid rgba(255,183,77,0.2);">
-    📊 Strength at Key Milestones
+    Strength at Key Milestones
 </div>""", unsafe_allow_html=True)
 
 milestones = [12, 24, 36, 48, 72, 96, 168]
@@ -286,7 +286,7 @@ for i, t in enumerate(milestones):
     m, s = engine.predict(t, features)
     meets = m >= required_strength
     color = "#2ecc71" if meets else "#e74c3c"
-    icon = "✅" if meets else "❌"
+    icon = "PASS" if meets else "FAIL"
     ms_cols[i].markdown(f"""
     <div style="text-align: center; background: rgba(0,0,0,0.2);
         border: 1px solid {'rgba(46,204,113,0.3)' if meets else 'rgba(231,76,60,0.2)'};

@@ -12,7 +12,6 @@ CLIMATE_PROFILES = {
         "monsoon_temp_c": 28.0,
         "monsoon_rh_pct": 92.0,
         "label": "Humid-Hot",
-        "icon": "🌴",
         "description": "High humidity year-round. Steam curing less effective due to moisture saturation."
     },
     "Delhi (North)": {
@@ -23,7 +22,6 @@ CLIMATE_PROFILES = {
         "monsoon_temp_c": 30.0,
         "monsoon_rh_pct": 85.0,
         "label": "Seasonal Extremes",
-        "icon": "🏙️",
         "description": "Hot summers, cold winters. Winter curing can be very slow below 15°C."
     },
     "Rajasthan (West)": {
@@ -34,7 +32,6 @@ CLIMATE_PROFILES = {
         "monsoon_temp_c": 32.0,
         "monsoon_rh_pct": 65.0,
         "label": "Dry-Hot",
-        "icon": "🏜️",
         "description": "Very low humidity accelerates surface drying. Moist curing critical."
     },
     "Mumbai (West)": {
@@ -45,7 +42,6 @@ CLIMATE_PROFILES = {
         "monsoon_temp_c": 27.0,
         "monsoon_rh_pct": 95.0,
         "label": "Coastal Humid",
-        "icon": "🌊",
         "description": "Coastal humidity and salt air. Long monsoon season affects outdoor curing."
     },
     "Kolkata (East)": {
@@ -56,7 +52,6 @@ CLIMATE_PROFILES = {
         "monsoon_temp_c": 28.0,
         "monsoon_rh_pct": 90.0,
         "label": "Tropical Humid",
-        "icon": "🌿",
         "description": "High humidity with extended monsoon. Moderate temperatures year-round."
     }
 }

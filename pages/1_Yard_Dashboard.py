@@ -6,7 +6,7 @@ import plotly.express as px
 from src.yard_model import YardModel
 from src.climate_profiles import CLIMATE_PROFILES, get_city_names
 
-st.set_page_config(page_title="Yard Dashboard | AI-Cycle", page_icon="📊", layout="wide")
+st.set_page_config(page_title="Yard Dashboard | AI-Cycle", page_icon="", layout="wide")
 
 # ─────────────────────────────────────────────
 # Load Dataset
@@ -27,7 +27,7 @@ st.markdown("""
 <h1 style="background: linear-gradient(90deg, #FFB74D, #FF9800, #F57C00);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text; font-size: 2rem; margin-bottom: 0;">
-    📊 Yard Performance Dashboard
+    Yard Performance Dashboard
 </h1>
 <p style="color: #8b949e; font-size: 0.95rem; margin-top: 4px;">
     Real-time yard utilization, throughput, and cost monitoring
@@ -40,7 +40,7 @@ st.markdown("---")
 # Sidebar Controls
 # ─────────────────────────────────────────────
 with st.sidebar:
-    st.markdown("### 🏗️ Yard Configuration")
+    st.markdown("### Yard Configuration")
 
     region = st.selectbox("Region / Climate", get_city_names())
     profile = CLIMATE_PROFILES[region]
@@ -49,7 +49,7 @@ with st.sidebar:
     <div style="background: rgba(255,183,77,0.08); border: 1px solid rgba(255,183,77,0.2);
         border-radius: 8px; padding: 10px 14px; margin: 8px 0;">
         <div style="color: #FFB74D; font-weight: 600; font-size: 0.85rem;">
-            {profile['icon']} {profile['label']}
+            {profile['label']}
         </div>
         <div style="color: #8b949e; font-size: 0.75rem; margin-top: 4px;">
             {profile['description']}
@@ -57,7 +57,7 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
-    monsoon = st.toggle("🌧️ Monsoon Season", value=False)
+    monsoon = st.toggle("Monsoon Season", value=False)
 
     st.markdown("---")
     mold_count = st.slider("Available Molds", 5, 80, 30)
@@ -80,7 +80,7 @@ opt_summary = yard.summary(optimized_cycle, yard_day_cost)
 st.markdown("""<div style="color: #FFB74D; font-size: 0.8rem; font-weight: 600;
     text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;
     padding-bottom: 6px; border-bottom: 1px solid rgba(255,183,77,0.2);">
-    🎯 Core Performance Metrics
+    Core Performance Metrics
 </div>""", unsafe_allow_html=True)
 
 c1, c2, c3, c4 = st.columns(4)

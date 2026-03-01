@@ -10,7 +10,7 @@ from src.yard_model import YardModel
 # ─────────────────────────────────────────────
 st.set_page_config(
     page_title="AI-Cycle Optimizer",
-    page_icon="⚙️",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -212,7 +212,6 @@ hr {
 with st.sidebar:
     st.markdown("""
     <div style="text-align: center; padding: 10px 0 20px 0;">
-        <div style="font-size: 2.5rem;">⚙️</div>
         <div style="font-size: 1.3rem; font-weight: 700; color: #FFB74D; margin-top: 5px;">
             AI-Cycle Optimizer
         </div>
@@ -226,10 +225,10 @@ with st.sidebar:
     st.markdown("""
     <div style="font-size: 0.8rem; color: #8b949e; line-height: 1.6;">
         <b style="color: #c9d1d9;">Navigation</b><br>
-        📊 <b>Yard Dashboard</b> — Overview & KPIs<br>
-        🧪 <b>Element Simulation</b> — Scenario Builder<br>
-        🎯 <b>Optimization Lab</b> — Multi-Objective<br>
-        🔬 <b>What-If Analysis</b> — Sensitivity Testing
+        <b>Yard Dashboard</b> — Overview & KPIs<br>
+        <b>Element Simulation</b> — Scenario Builder<br>
+        <b>Optimization Lab</b> — Multi-Objective<br>
+        <b>What-If Analysis</b> — Sensitivity Testing
     </div>
     """, unsafe_allow_html=True)
 
@@ -237,9 +236,9 @@ with st.sidebar:
     st.markdown("---")
     model = load_model()
     if model:
-        st.markdown('<span class="badge-green">🤖 ML Model Active</span>', unsafe_allow_html=True)
+        st.markdown('<span class="badge-green">ML Model Active</span>', unsafe_allow_html=True)
     else:
-        st.markdown('<span class="badge-amber">⚡ Physics Model Active</span>', unsafe_allow_html=True)
+        st.markdown('<span class="badge-amber">Physics Model Active</span>', unsafe_allow_html=True)
 
 # ─────────────────────────────────────────────
 # Load Dataset
@@ -269,14 +268,13 @@ st.markdown("""
 # ─────────────────────────────────────────────
 # System Architecture Cards
 # ─────────────────────────────────────────────
-st.markdown('<div class="kpi-section-title">🏗️ System Architecture</div>', unsafe_allow_html=True)
+st.markdown('<div class="kpi-section-title">System Architecture</div>', unsafe_allow_html=True)
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
     st.markdown("""
     <div class="info-card">
-        <div style="font-size: 1.5rem; margin-bottom: 8px;">🧠</div>
         <div style="color: #FFB74D; font-weight: 600; font-size: 1rem; margin-bottom: 6px;">
             Strength Prediction Engine
         </div>
@@ -289,7 +287,6 @@ with col1:
 with col2:
     st.markdown("""
     <div class="info-card">
-        <div style="font-size: 1.5rem; margin-bottom: 8px;">💰</div>
         <div style="color: #FFB74D; font-weight: 600; font-size: 1rem; margin-bottom: 6px;">
             Economic Simulation Engine
         </div>
@@ -302,7 +299,6 @@ with col2:
 with col3:
     st.markdown("""
     <div class="info-card">
-        <div style="font-size: 1.5rem; margin-bottom: 8px;">🎯</div>
         <div style="color: #FFB74D; font-weight: 600; font-size: 1rem; margin-bottom: 6px;">
             Multi-Objective Optimizer
         </div>
@@ -317,7 +313,7 @@ with col3:
 # ─────────────────────────────────────────────
 if df is not None:
     st.markdown("---")
-    st.markdown('<div class="kpi-section-title">📈 Dataset Overview</div>', unsafe_allow_html=True)
+    st.markdown('<div class="kpi-section-title">Dataset Overview</div>', unsafe_allow_html=True)
 
     k1, k2, k3, k4, k5 = st.columns(5)
     k1.metric("Total Elements", f"{df['element_id'].nunique():,}")
@@ -328,7 +324,7 @@ if df is not None:
 
     # Operational KPIs
     st.markdown("---")
-    st.markdown('<div class="kpi-section-title">🏭 Operational KPIs (Dataset Baseline)</div>', unsafe_allow_html=True)
+    st.markdown('<div class="kpi-section-title">Operational KPIs (Dataset Baseline)</div>', unsafe_allow_html=True)
 
     avg_baseline_cycle = df['baseline_cycle_time'].mean()
     avg_molds = df['mold_count_available'].mean()
@@ -349,7 +345,7 @@ if df is not None:
 
     # Region breakdown
     st.markdown("---")
-    st.markdown('<div class="kpi-section-title">🗺️ Regional Distribution</div>', unsafe_allow_html=True)
+    st.markdown('<div class="kpi-section-title">Regional Distribution</div>', unsafe_allow_html=True)
 
     import plotly.express as px
     import plotly.graph_objects as go
@@ -393,7 +389,7 @@ if df is not None:
         st.plotly_chart(fig_type, use_container_width=True)
 
     # Strength distribution by curing method
-    st.markdown('<div class="kpi-section-title">💪 Strength at 24h by Curing Method</div>', unsafe_allow_html=True)
+    st.markdown('<div class="kpi-section-title">Strength at 24h by Curing Method</div>', unsafe_allow_html=True)
 
     fig_box = px.box(
         df, x='curing_method', y='strength_hr24',
@@ -417,7 +413,7 @@ else:
 # Model KPIs Placeholder
 # ─────────────────────────────────────────────
 st.markdown("---")
-st.markdown('<div class="kpi-section-title">🤖 Model Performance KPIs</div>', unsafe_allow_html=True)
+st.markdown('<div class="kpi-section-title">Model Performance KPIs</div>', unsafe_allow_html=True)
 
 m1, m2, m3 = st.columns(3)
 if load_model():

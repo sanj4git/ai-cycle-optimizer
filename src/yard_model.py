@@ -58,5 +58,5 @@ class YardModel:
             "capacity_gap": round(gap, 1),
             "weekly_cost": round(weekly, 0),
             "congestion_factor": round(congestion, 2),
-            "status": "✅ On Track" if gap >= 0 else "⚠️ Under Capacity"
+            "status": "On Track" if gap >= 0 else "Under Capacity"
         }
